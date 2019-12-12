@@ -18,7 +18,7 @@ public class UserInput : MonoBehaviour
     {
         //Lean.Touch.LeanTouch.OnFingerDown += LeanTouch_OnFingerDown;
         //Lean.Touch.LeanTouch.OnFingerUp += LeanTouch_OnFingerUp;
-        
+
         this.ball = FindObjectOfType<BallPhysics>();
 
         Lean.Touch.LeanTouch.OnFingerTap += LeanTouch_OnFingerTap;
@@ -26,7 +26,7 @@ public class UserInput : MonoBehaviour
 
     private void LeanTouch_OnFingerTap(Lean.Touch.LeanFinger obj)
     {
-        this.ball.AddTorque(this.ball.transform.right, 0);
+        this.ball.AddTorque();
     }
 
     private void Update()

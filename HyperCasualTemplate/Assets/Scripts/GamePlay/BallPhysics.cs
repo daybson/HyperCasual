@@ -5,7 +5,7 @@ using UnityEngine;
 public class BallPhysics : MonoBehaviour
 {
     [SerializeField]
-    protected Vector3 spawnPos;
+    protected Vector3 torqueAxis;
 
     [SerializeField]
     protected float moveSpeed;
@@ -21,62 +21,47 @@ public class BallPhysics : MonoBehaviour
     [SerializeField]
     protected float maxVelocity;
     protected float sqrMaxVelocity;
-
-    [SerializeField]
-    private bool IsGround;
+     
     int c = 0;
+    public bool score; 
+
 
     private void Awake()
     {
         this.rigidbody = GetComponent<Rigidbody>();
         this.rigidbody.maxAngularVelocity = maxAngularVelocity;
-        //sqrMaxVelocity = maxVelocity * maxVelocity;
     }
 
     private void Update()
     {
-        Debug.DrawRay(transform.position, transform.up, Color.yellow);
+        Debug.DrawRay(transform.position, transform.up * 1.2f, Color.yellow);
+        
+        if (score)
+            return;
 
         if (this.rigidbody.velocity.magnitude == 0 && this.rigidbody.angularVelocity.magnitude == 0)
         {
             if (Physics.Raycast(transform.position, transform.up, out RaycastHit r, 1.1f))
             {
                 print("score!" + ++c);
+                score = true;
             }
         }
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        //print(transform.InverseTransformDirection(transform.up));
-
-        //if (Physics.Raycast(transform.position, transform.up, out RaycastHit r, 1.1f))
-        //{
-        //    print("score!" + ++c);
-        //}
-
-        //IsGround = true;
-        //if (transform.up == Vector3.up)
-
-    }
 
     private void OnCollisionExit(Collision collision)
     {
-        //IsGround = false;
+        score = false;
     }
 
-    public void AddTorque(Vector3 direction, float torque)
+    public void AddTorque()
     {
-        //if (IsGround)
-        {
-            //this.axisRotation = direction;
-            this.rigidbody.AddTorque(Vector3.right * this.torqueSpeed, ForceMode.Impulse);
+        this.rigidbody.AddTorque(torqueAxis * this.torqueSpeed, ForceMode.Impulse);
 
+        if (this.rigidbody.velocity.normalized == Vector3.down)
+            this.rigidbody.velocity = Vector3.zero;
 
-            if (this.rigidbody.velocity.normalized == Vector3.down)
-                this.rigidbody.velocity = Vector3.zero;
-
-            this.rigidbody.AddForce(Vector3.up * this.moveSpeed, ForceMode.Impulse);
-        }
+        this.rigidbody.AddForce(Vector3.up * this.moveSpeed, ForceMode.Impulse);
     }
 }
