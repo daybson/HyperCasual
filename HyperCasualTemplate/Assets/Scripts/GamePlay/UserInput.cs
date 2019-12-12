@@ -13,6 +13,10 @@ public class UserInput : MonoBehaviour
     [SerializeField]
     protected BallPhysics ball;
 
+    //limitar quantidade de taps por jogada?
+    //segurar para girar e soltar para parar?
+    //tap para parar de girar?
+
 
     private void Awake()
     {
