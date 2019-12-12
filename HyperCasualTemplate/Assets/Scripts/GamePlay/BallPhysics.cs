@@ -23,8 +23,8 @@ public class BallPhysics : MonoBehaviour
     protected float sqrMaxVelocity;
      
     int c = 0;
-    public bool score; 
-
+    public bool score;
+    [SerializeField] private float offset;
 
     private void Awake()
     {
@@ -34,7 +34,7 @@ public class BallPhysics : MonoBehaviour
 
     private void Update()
     {
-        Debug.DrawRay(transform.position, transform.up * 1.2f, Color.yellow);
+        Debug.DrawRay(transform.position + Vector3.right * this.offset, Vector3.down*2, Color.yellow);
         
         if (score)
             return;
@@ -55,13 +55,18 @@ public class BallPhysics : MonoBehaviour
         score = false;
     }
 
+
     public void AddTorque()
     {
-        this.rigidbody.AddTorque(torqueAxis * this.torqueSpeed, ForceMode.Impulse);
+        //TODO: torque variável em função do tempo de touch
+        this.rigidbody.AddTorque(this.torqueAxis * this.torqueSpeed, ForceMode.Impulse);
+        
+        //TODO: posição de aplicação da força em função do local do touch?
+        this.rigidbody.AddForceAtPosition(Vector3.up * this.torqueSpeed, transform.position + Vector3.right * this.offset, ForceMode.Force);
+        
+        //if (this.rigidbody.velocity.normalized == Vector3.down)
+        //    this.rigidbody.velocity = Vector3.zero;
 
-        if (this.rigidbody.velocity.normalized == Vector3.down)
-            this.rigidbody.velocity = Vector3.zero;
-
-        this.rigidbody.AddForce(Vector3.up * this.moveSpeed, ForceMode.Impulse);
+        //this.rigidbody.AddForce(Vector3.up * this.moveSpeed, ForceMode.Impulse);
     }
 }

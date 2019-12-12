@@ -4,66 +4,88 @@ using UnityEngine;
 
 public class UserInput : MonoBehaviour
 {
-    [SerializeField]
-    protected float spinningTime;
+    //[SerializeField]
+    //protected float spinningTime;
 
     private bool IsHoldingDown;
-    private bool IsReleased;
 
     [SerializeField]
-    protected BallPhysics ball;
-
+    protected Ball ball;
+    protected BallPhysics ballp;
     //limitar quantidade de taps por jogada?
-    //segurar para girar e soltar para parar?
+    //segurar para girar e soltar para parar? ****
     //tap para parar de girar?
 
+
+    //[SerializeField]
+    private float chargeMove;    
+    [SerializeField]
+    [Range(0.01f, 100)]
+    private float chargeMoveFactor;
+    [SerializeField]
+    [Range(0.01f, 100)]
+    private float unchargeMoveFactor;
+
+    //[SerializeField]
+    private float chargeSpin;
+    [SerializeField]
+    [Range(0.01f, 100)]
+    private float chargeSpinFactor;
+    [SerializeField]
+    [Range(0.01f, 100)]
+    private float unchargeSpinFactor;
 
     private void Awake()
     {
         //Lean.Touch.LeanTouch.OnFingerDown += LeanTouch_OnFingerDown;
         //Lean.Touch.LeanTouch.OnFingerUp += LeanTouch_OnFingerUp;
-
-        this.ball = FindObjectOfType<BallPhysics>();
-
         Lean.Touch.LeanTouch.OnFingerTap += LeanTouch_OnFingerTap;
+
+        ballp = FindObjectOfType<BallPhysics>();
     }
 
-    private void LeanTouch_OnFingerTap(Lean.Touch.LeanFinger obj)
-    {
-        this.ball.AddTorque();
-    }
 
     private void Update()
     {
-        /*
+        return;
+
         if (this.IsHoldingDown)
         {
-            this.spinningTime += Time.deltaTime;
-            this.ball.AddTorque(this.ball.transform.right, this.spinningTime);
-            //this.ball.MoveToTop();
+            this.chargeMove += this.chargeMoveFactor * Time.deltaTime;
+            this.chargeSpin += this.chargeSpinFactor * Time.deltaTime;
+
+            this.ball.MoveToTop(this.chargeMoveFactor);
         }
-        else if (this.IsReleased)
+        else
         {
-            //this.ball.MoveToBottom();
-            this.spinningTime -= Time.deltaTime;
-            this.spinningTime = Mathf.Clamp(this.spinningTime, 0, this.spinningTime);
+            this.chargeMove -= this.unchargeMoveFactor * Time.deltaTime;
+            this.chargeSpin -= this.unchargeSpinFactor * Time.deltaTime;
+
+            this.ball.MoveToBottom(this.unchargeMoveFactor);
         }
-        */
+
+        this.chargeMove = Mathf.Clamp01(this.chargeMove);
+        this.chargeSpin = Mathf.Clamp01(this.chargeSpin);
+
+        //this.ball.AddTorque(Vector3.right, this.chargeSpin);
     }
 
+
+    private void LeanTouch_OnFingerTap(Lean.Touch.LeanFinger obj)
+    {
+        this.ballp.AddTorque();
+    }
 
 
     private void LeanTouch_OnFingerDown(Lean.Touch.LeanFinger obj)
     {
         this.IsHoldingDown = true;
-        this.IsReleased = false;
     }
 
 
     private void LeanTouch_OnFingerUp(Lean.Touch.LeanFinger obj)
     {
         this.IsHoldingDown = false;
-        this.IsReleased = true;
     }
 
 }
