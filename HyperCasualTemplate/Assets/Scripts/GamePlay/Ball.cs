@@ -39,12 +39,18 @@ public class Ball : MonoBehaviour
 
     public void MoveToTop(float chargeFactor)
     {
-        transform.position = Vector3.MoveTowards(transform.position, topPos.position, chargeFactor * moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(
+            transform.position, 
+            topPos.position, 
+            chargeFactor * moveSpeed * Time.deltaTime);
     }
 
     public void MoveToBottom(float unchargeFactor)
     {
-        transform.position = Vector3.MoveTowards(transform.position, bottomPos.position, unchargeFactor * moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(
+            transform.position, 
+            bottomPos.position, 
+            unchargeFactor * moveSpeed * Time.deltaTime);
 
         /*
         if (transform.position == bottomPos.position && transform.rotation.eulerAngles.x % 90 != 0)

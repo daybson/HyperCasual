@@ -37,18 +37,16 @@ public class UserInput : MonoBehaviour
 
     private void Awake()
     {
-        //Lean.Touch.LeanTouch.OnFingerDown += LeanTouch_OnFingerDown;
-        //Lean.Touch.LeanTouch.OnFingerUp += LeanTouch_OnFingerUp;
-        Lean.Touch.LeanTouch.OnFingerTap += LeanTouch_OnFingerTap;
+        Lean.Touch.LeanTouch.OnFingerDown += LeanTouch_OnFingerDown;
+        Lean.Touch.LeanTouch.OnFingerUp += LeanTouch_OnFingerUp;
+        //Lean.Touch.LeanTouch.OnFingerTap += LeanTouch_OnFingerTap;
 
-        ballp = FindObjectOfType<BallPhysics>();
+        //ball = FindObjectOfType<BallPhysics>();
     }
 
 
     private void Update()
     {
-        return;
-
         if (this.IsHoldingDown)
         {
             this.chargeMove += this.chargeMoveFactor * Time.deltaTime;
@@ -67,13 +65,13 @@ public class UserInput : MonoBehaviour
         this.chargeMove = Mathf.Clamp01(this.chargeMove);
         this.chargeSpin = Mathf.Clamp01(this.chargeSpin);
 
-        //this.ball.AddTorque(Vector3.right, this.chargeSpin);
+        this.ball.AddTorque(Vector3.right, this.chargeSpin);
     }
 
 
     private void LeanTouch_OnFingerTap(Lean.Touch.LeanFinger obj)
     {
-        this.ballp.AddTorque();
+        //this.ball.AddTorque();
     }
 
 

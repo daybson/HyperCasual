@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 539.74054, y: 0}
+  m_AnchoredPosition: {x: 539.76447, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &26517331
@@ -597,7 +597,6 @@ GameObject:
   m_Component:
   - component: {fileID: 364302803}
   - component: {fileID: 364302802}
-  - component: {fileID: 364302799}
   - component: {fileID: 364302798}
   m_Layer: 0
   m_Name: CubePhysics
@@ -615,32 +614,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 364302797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c8024767845ab0409c6f0ba44254559, type: 3}
+  m_Script: {fileID: 11500000, guid: 55c744d6b6529e442a41277023a7fc03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torqueAxis: {x: 1, y: 0, z: 0}
-  moveSpeed: 15
-  torqueSpeed: 41.09
-  maxAngularVelocity: 20
-  maxVelocity: 2
-  score: 0
-  offset: 0.58
---- !u!54 &364302799
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364302797}
-  serializedVersion: 2
-  m_Mass: 5
-  m_Drag: 0.1
-  m_AngularDrag: 0.1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 106
-  m_CollisionDetection: 3
+  topPos: {fileID: 1035016462}
+  bottomPos: {fileID: 1072205209}
+  moveSpeed: 1.93
+  torqueSpeed: 20.86
 --- !u!33 &364302802
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -657,7 +637,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364302797}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1108774409}
@@ -693,11 +673,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a8d8af83f9c8ea43aaa58c0856bc5a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 0}
-  chargeMoveFactor: 0
-  unchargeMoveFactor: 0
-  chargeSpinFactor: 0
-  unchargeSpinFactor: 0
+  ball: {fileID: 364302798}
+  chargeMoveFactor: 7.4
+  unchargeMoveFactor: 10.4
+  chargeSpinFactor: 6.3
+  unchargeSpinFactor: 11.8
 --- !u!4 &375111992
 Transform:
   m_ObjectHideFlags: 0
@@ -893,7 +873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 539.74054, y: 0}
+  m_AnchoredPosition: {x: 539.76447, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &855947778
@@ -1101,7 +1081,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.25355998, g: 0.40184152, b: 0.6981132, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1163,7 +1143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1035016462
 Transform:
   m_ObjectHideFlags: 0
@@ -1194,7 +1174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1072205209
 Transform:
   m_ObjectHideFlags: 0
@@ -1203,7 +1183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072205208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.5, z: 0}
+  m_LocalPosition: {x: 0, y: -2.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 278438119}
@@ -1238,7 +1218,7 @@ Transform:
   m_GameObject: {fileID: 1108774408}
   m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 1363765868}
   m_Father: {fileID: 364302803}
@@ -1341,8 +1321,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 539.74054, y: 0}
-  m_SizeDelta: {x: 1079.4811, y: 0}
+  m_AnchoredPosition: {x: 539.76447, y: 0}
+  m_SizeDelta: {x: 1079.5289, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1253984723
 MonoBehaviour:
@@ -1591,7 +1571,7 @@ BoxCollider:
   m_GameObject: {fileID: 1485302101}
   m_Material: {fileID: 13400000, guid: 6fb77ce27a9aea1418ffd29af9bbb1bb, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1602,7 +1582,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485302101}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1649,7 +1629,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485302101}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.54999995, z: 0}
+  m_LocalPosition: {x: 0, y: -1.9, z: 0}
   m_LocalScale: {x: 5, y: 0.1, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1997,7 +1977,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 539.74054, y: 0}
+  m_AnchoredPosition: {x: 539.76447, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2064232312
